@@ -364,6 +364,10 @@ class Conversation extends BaseModel
                 'conversation.participants.messageable',
             ]);
 
+        if (isset($options['filters']['participants']) && ! empty($options['filters']['participants'])) {
+            $paginator = $paginator->whereIn($this->tablePrefix.'participation.messageable_id', (array) $options['filters']['participants']);
+        }
+
         if (isset($options['filters']['private'])) {
             $paginator = $paginator->where('c.private', (bool) $options['filters']['private']);
         }

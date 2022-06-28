@@ -192,6 +192,20 @@ class ConversationService
         return $this;
     }
 
+    /**
+     * Sets an array of participant IDs used to filter the getConversationsList query
+     *
+     * @param array $participantIds
+     *
+     * @return $this
+     */
+    public function setParticipants($participantIds = [])
+    {
+        $this->filters['participants'] = $participantIds;
+
+        return $this;
+    }
+
     public function getParticipation($participant = null)
     {
         $participant = $participant ?? $this->participant;
