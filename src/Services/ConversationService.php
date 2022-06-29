@@ -199,9 +199,9 @@ class ConversationService
      *
      * @return $this
      */
-    public function setConversations($conversationIds = [])
+    public function setConversationIds($conversationIds = [])
     {
-        $this->filters['conversations'] = $conversationIds;
+        $this->filters['conversation_ids'] = $conversationIds;
 
         return $this;
     }
