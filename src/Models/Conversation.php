@@ -364,7 +364,7 @@ class Conversation extends BaseModel
                 'conversation.participants.messageable',
             ]);
 
-        if (isset($options['filters']['conversation_ids']) && ! empty($options['filters']['conversation_ids'])) {
+        if (! is_null($options['filters']['conversation_ids'])) {
             $paginator = $paginator->whereIn('c.id', (array) $options['filters']['conversation_ids']);
         }
 
