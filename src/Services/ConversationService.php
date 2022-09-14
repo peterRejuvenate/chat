@@ -195,11 +195,11 @@ class ConversationService
     /**
      * Sets an array of conversation IDs, used to search for specific conversations
      *
-     * @param array $conversationIds
+     * @param ?array $conversationIds
      *
      * @return $this
      */
-    public function setConversationIds($conversationIds = [])
+    public function setConversationIds($conversationIds = null)
     {
         $this->filters['conversation_ids'] = $conversationIds;
 
