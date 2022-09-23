@@ -187,4 +187,12 @@ class Message extends BaseModel
 
         return $this;
     }
+
+    public function getReactionsAttribute()
+    {
+        return MessageNotification::where('message_id', $this->id)
+            ->select(['reaction'])
+            ->pluck('reaction')
+            ->toArray();
+    }
 }
