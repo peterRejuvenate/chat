@@ -333,6 +333,7 @@ class Conversation extends BaseModel
                     $this->tablePrefix.'message_notifications.id as notification_id',
                     $this->tablePrefix.'message_notifications.is_seen',
                     $this->tablePrefix.'message_notifications.is_sender',
+                    $this->tablePrefix.'message_notifications.reaction',
                     $this->tablePrefix.'messages.*',
                 ],
                 $paginationParams['pageName'],

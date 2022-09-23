@@ -65,6 +65,7 @@ class CreateChatTables extends Migration
             $table->string('messageable_type');
             $table->bigInteger('conversation_id')->unsigned();
             $table->bigInteger('participation_id')->unsigned();
+            $table->string('reaction')->nullable();
             $table->boolean('is_seen')->default(false);
             $table->boolean('is_sender')->default(false);
             $table->boolean('flagged')->default(false);

@@ -169,6 +169,16 @@ class Message extends BaseModel
         $this->getNotification($participant)->markAsRead();
     }
 
+    /**
+     * Sets a message reaction
+     *
+     * @param $participant
+     */
+    public function react($participant, $reaction): void
+    {
+        $this->getNotification($participant)->react($reaction);
+    }
+
     public function flagged(Model $participant): bool
     {
         return (bool) MessageNotification::where('messageable_id', $participant->getKey())
@@ -186,5 +196,13 @@ class Message extends BaseModel
             ->update(['flagged' => $this->flagged($participant) ? false : true]);
 
         return $this;
+    }
+
+    public function getReactionsAttribute()
+    {
+        return MessageNotification::where('message_id', $this->id)
+            ->select(['reaction'])
+            ->pluck('reaction')
+            ->toArray();
     }
 }
