@@ -201,6 +201,7 @@ class Message extends BaseModel
     public function getReactionsAttribute()
     {
         return MessageNotification::where('message_id', $this->id)
+            ->whereNotNull('reaction')
             ->select(['reaction'])
             ->pluck('reaction')
             ->toArray();
