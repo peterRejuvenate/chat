@@ -78,6 +78,16 @@ class MessageService
     }
 
     /**
+     * Mark a message as read.
+     *
+     * @return void
+     */
+    public function react($reaction)
+    {
+        $this->message->react($this->participant, $reaction);
+    }
+
+    /**
      * Deletes message.
      *
      * @return void

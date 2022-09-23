@@ -68,4 +68,11 @@ class MessageNotification extends BaseModel
         $this->update(['is_seen' => 1]);
         $this->save();
     }
+
+    public function react($reaction)
+    {
+        $this->reaction = $reaction;
+        $this->update(['reaction' => $reaction]);
+        $this->save();
+    }
 }
