@@ -16,6 +16,15 @@ class MessageNotification extends BaseModel
     protected $dates = ['deleted_at'];
 
     /**
+     * Relationships
+     */
+
+    public function conversation()
+    {
+        return $this->belongsTo(\Musonza\Chat\Models\Conversation::class, 'conversation_id', 'id');
+    }
+
+    /**
      * Creates a new notification.
      *
      * @param Message      $message

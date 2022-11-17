@@ -60,8 +60,8 @@ class Conversation extends BaseModel
     public function last_message()
     {
         return $this->hasOne(Message::class)
-            ->orderBy($this->tablePrefix.'messages.id', 'desc')
-            ->with('participation');
+            ->with('participation')
+            ->latestOfMany();
     }
 
     /**
