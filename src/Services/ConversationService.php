@@ -206,6 +206,13 @@ class ConversationService
         return $this;
     }
 
+    public function removeConversationIds($conversationIds = null)
+    {
+        $this->filters['ignore_conversation_ids'] = $conversationIds;
+
+        return $this;
+    }
+
     public function getParticipation($participant = null)
     {
         $participant = $participant ?? $this->participant;

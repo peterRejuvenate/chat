@@ -377,6 +377,10 @@ class Conversation extends BaseModel
             $paginator = $paginator->where('c.direct_message', (bool) $options['filters']['direct_message']);
         }
 
+        if (isset($options['filters']['ignore_conversation_ids'])) {
+            $paginator = $paginator->whereNotIn('c.id', (array) $options['filters']['ignore_conversation_ids']);
+        }
+
         return $paginator
             ->orderBy('c.updated_at', $options['sorting'])
             ->orderBy('c.id', $options['sorting'])
