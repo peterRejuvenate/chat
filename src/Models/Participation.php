@@ -35,4 +35,9 @@ class Participation extends BaseModel
     {
         return $this->morphTo()->with('participation');
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(MessageNotification::class, 'participation_id');
+    }
 }
