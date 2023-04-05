@@ -91,13 +91,14 @@ class Message extends BaseModel
      *
      * @return Model
      */
-    public function send(Conversation $conversation, string $body, Participation $participant, string $type = 'text', array $data = []): Model
+    public function send(Conversation $conversation, string $body, Participation $participant, string $type = 'text', array $data = [], Message $response_to): Model
     {
         $message = $conversation->messages()->create([
             'body'             => $body,
             'participation_id' => $participant->getKey(),
             'type'             => $type,
             'data'             => $data,
+            'response_to_id'   => $response_to->id,
         ]);
 
         if (Chat::broadcasts()) {
