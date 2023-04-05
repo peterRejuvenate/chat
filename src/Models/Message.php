@@ -19,6 +19,7 @@ class Message extends BaseModel
         'participation_id',
         'type',
         'data',
+        'response_to_id',
     ];
 
     protected $table = ConfigurationManager::MESSAGES_TABLE;
