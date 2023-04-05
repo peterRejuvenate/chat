@@ -15,6 +15,7 @@ class MessageService
     protected $type = 'text';
     protected $data = [];
     protected $body;
+    protected $responseTo;
     /**
      * @var CommandBus
      */
@@ -58,6 +59,13 @@ class MessageService
     public function data(array $data)
     {
         $this->data = $data;
+
+        return $this;
+    }
+
+    public function responseTo(Message $message)
+    {
+        $this->responseTo = $message;
 
         return $this;
     }
@@ -138,7 +146,7 @@ class MessageService
             throw new Exception('Message receiver has not been set');
         }
 
-        $command = new SendMessageCommand($this->recipient, $this->body, $this->sender, $this->type, $this->data);
+        $command = new SendMessageCommand($this->recipient, $this->body, $this->sender, $this->type, $this->data, $this->responseTo);
 
         return $this->commandBus->execute($command);
     }

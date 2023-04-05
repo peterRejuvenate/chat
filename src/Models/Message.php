@@ -46,6 +46,11 @@ class Message extends BaseModel
         return $this->belongsTo(Participation::class, 'participation_id');
     }
 
+    public function response_to()
+    {
+        return $this->belongsTo(self::class, 'response_to_id');
+    }
+
     public function getSenderAttribute()
     {
         $participantModel = $this->participation->messageable;

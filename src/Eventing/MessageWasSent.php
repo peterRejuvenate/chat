@@ -39,6 +39,7 @@ class MessageWasSent extends Event implements ShouldBroadcast
                 'id'              => $this->message->getKey(),
                 'body'            => $this->message->body,
                 'conversation_id' => $this->message->conversation_id,
+                'response_to'     => $this->message->response_to,
                 'type'            => $this->message->type,
                 'data'            => $this->message->data,
                 'created_at'      => $this->message->created_at,
