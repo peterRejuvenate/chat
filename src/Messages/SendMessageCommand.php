@@ -12,19 +12,22 @@ class SendMessageCommand
     public $type;
     public $data;
     public $participant;
+    public $response_to;
 
     /**
      * @param Conversation $conversation The conversation
      * @param string       $body         The message body
      * @param Model        $sender       The sender identifier
      * @param string       $type         The message type
+     * @param string       $type         The message being replied to
      */
-    public function __construct(Conversation $conversation, $body, Model $sender, $type = 'text', $data)
+    public function __construct(Conversation $conversation, $body, Model $sender, $type = 'text', $data, $responseTo)
     {
         $this->conversation = $conversation;
         $this->body = $body;
         $this->type = $type;
         $this->data = $data;
         $this->participant = $this->conversation->participantFromSender($sender);
+        $this->response_to = $responseTo;
     }
 }
