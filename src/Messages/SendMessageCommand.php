@@ -22,7 +22,7 @@ class SendMessageCommand
      * @param string       $type         The message type
      * @param string       $type         The message being replied to
      */
-    public function __construct(Conversation $conversation, $body, Model $sender, $type = 'text', $data, Message $responseTo)
+    public function __construct(Conversation $conversation, $body, Model $sender, $type = 'text', $data, Message $responseTo = null)
     {
         $this->conversation = $conversation;
         $this->body = $body;

@@ -63,7 +63,7 @@ class MessageService
         return $this;
     }
 
-    public function responseTo(Message $message)
+    public function responseTo(Message $message = null)
     {
         $this->responseTo = $message;
 
