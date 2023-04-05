@@ -4,6 +4,7 @@ namespace Musonza\Chat\Messages;
 
 use Illuminate\Database\Eloquent\Model;
 use Musonza\Chat\Models\Conversation;
+use Musonza\Chat\Models\Message;
 
 class SendMessageCommand
 {
@@ -21,7 +22,7 @@ class SendMessageCommand
      * @param string       $type         The message type
      * @param string       $type         The message being replied to
      */
-    public function __construct(Conversation $conversation, $body, Model $sender, $type = 'text', $data, $responseTo)
+    public function __construct(Conversation $conversation, $body, Model $sender, $type = 'text', $data, Message $responseTo)
     {
         $this->conversation = $conversation;
         $this->body = $body;
