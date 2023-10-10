@@ -83,9 +83,9 @@ class Conversation extends BaseModel
      *
      * @return LengthAwarePaginator|HasMany|Builder
      */
-    public function getMessages(Model $participant, $paginationParams, $deleted = false)
+    public function getMessages(Model $participant, $paginationParams, $deleted = false, array $filters = [])
     {
-        return $this->getConversationMessages($participant, $paginationParams, $deleted);
+        return $this->getConversationMessages($participant, $paginationParams, $deleted, $filters);
     }
 
     public function getParticipantConversations($participant, array $options)
@@ -316,12 +316,17 @@ class Conversation extends BaseModel
      *
      * @return LengthAwarePaginator|HasMany|Builder
      */
-    private function getConversationMessages(Model $participant, $paginationParams, $deleted)
+    private function getConversationMessages(Model $participant, $paginationParams, $deleted, array $filters = [])
     {
         $messages = $this->messages()
             ->join($this->tablePrefix.'message_notifications', $this->tablePrefix.'message_notifications.message_id', '=', $this->tablePrefix.'messages.id')
             ->where($this->tablePrefix.'message_notifications.messageable_type', $participant->getMorphClass())
             ->where($this->tablePrefix.'message_notifications.messageable_id', $participant->getKey());
+        
+        if (array_key_exists('filter_out_message_ids', $filters)) {
+            $messages = $messages->whereNotIn($this->tablePrefix.'messages.id', $filters['filter_out_message_ids']);
+        }
+
         $messages = $deleted ? $messages->whereNotNull($this->tablePrefix.'message_notifications.deleted_at') : $messages->whereNull($this->tablePrefix.'message_notifications.deleted_at');
         $messages = $messages->orderBy($this->tablePrefix.'messages.id', $paginationParams['sorting'])
             ->paginate(
