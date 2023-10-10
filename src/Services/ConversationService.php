@@ -54,7 +54,7 @@ class ConversationService
      */
     public function getMessages()
     {
-        return $this->conversation->getMessages($this->participant, $this->getPaginationParams(), $this->deleted);
+        return $this->conversation->getMessages($this->participant, $this->getPaginationParams(), $this->deleted, $this->filters);
     }
 
     /**
@@ -218,5 +218,12 @@ class ConversationService
         $participant = $participant ?? $this->participant;
 
         return $participant->participation()->first();
+    }
+
+    public function filterOutMessageIds(array $messageIds = [])
+    {
+        $this->filters['filter_out_message_ids'] = $messageIds;
+
+        return $this;
     }
 }
