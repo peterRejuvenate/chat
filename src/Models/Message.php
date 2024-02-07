@@ -163,7 +163,6 @@ class Message extends BaseModel
                 '*',
                 'updated_at as read_at',
             ])
-            ->withTrashed()
             ->first();
     }
 
